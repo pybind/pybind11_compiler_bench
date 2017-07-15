@@ -1,0 +1,9 @@
+#!/bin/bash
+
+lastarg="${@: -1}"
+lastarg="${lastarg/*\//}"
+lastarg="${lastarg/.cpp/}"
+lastarg="${lastarg/-flto/(linking)}"
+# `\time` instead of `time` below to avoid bash's builtin time
+\time --format "${lastarg} %U %M" --output="timings.txt" --append \
+    "$@"
